@@ -3,8 +3,6 @@
 module Berrycrawl
   module Types
     class SearchResult < Internal::Types::Model
-      field :provider, -> { Berrycrawl::Types::SearchResultProvider }, optional: true, nullable: false
-
       field :published_date, -> { String }, optional: true, nullable: false, api_name: "publishedDate"
 
       field :snippet, -> { String }, optional: false, nullable: false

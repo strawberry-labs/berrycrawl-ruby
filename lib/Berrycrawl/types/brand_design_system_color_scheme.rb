@@ -2,10 +2,11 @@
 
 module Berrycrawl
   module Types
-    module SearchResultProvider
+    module BrandDesignSystemColorScheme
       extend Berrycrawl::Internal::Types::Enum
 
-      PARALLEL = "parallel"
+      LIGHT = "light"
+      DARK = "dark"
     end
   end
 end

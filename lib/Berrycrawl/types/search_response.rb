@@ -7,8 +7,6 @@ module Berrycrawl
 
       field :data, -> { Internal::Types::Array[Berrycrawl::Types::SearchResult] }, optional: false, nullable: false
 
-      field :provider, -> { Berrycrawl::Types::SearchResponseProvider }, optional: false, nullable: false
-
       field :query, -> { String }, optional: false, nullable: false
 
       field :success, -> { Internal::Types::Boolean }, optional: false, nullable: false
