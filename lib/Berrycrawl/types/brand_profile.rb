@@ -3,6 +3,8 @@
 module Berrycrawl
   module Types
     class BrandProfile < Internal::Types::Model
+      field :branding, -> { Berrycrawl::Types::BrandDesignSystem }, optional: true, nullable: false
+
       field :colors, -> { Internal::Types::Array[Berrycrawl::Types::BrandProfileColorsItem] }, optional: false, nullable: false
 
       field :description, -> { String }, optional: true, nullable: false
