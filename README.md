@@ -1,8 +1,9 @@
-# Berrycrawl Ruby Library
+# Berrycrawl Ruby SDK
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Berrycrawl%2FRuby)
 
-The Berrycrawl Ruby library provides convenient access to the Berrycrawl APIs from Ruby.
+The official Ruby SDK for scraping, crawling, searching, mapping, structured extraction, screenshots, and brand profiles.
+
+[Documentation](https://docs.berrycrawl.com) · [Dashboard](https://app.berrycrawl.com) · [GitHub](https://github.com/strawberry-labs/berrycrawl-ruby)
 
 ## Table of Contents
 
@@ -23,14 +24,29 @@ A full reference for this library is available [here](./reference.md).
 
 ## Usage
 
-Instantiate and use the client with the following:
+Set `BERRYCRAWL_API_KEY` to an API key from the [Berrycrawl dashboard](https://app.berrycrawl.com).
 
 ```ruby
 require "berrycrawl"
 
-client = Berrycrawl::Client.new(api_key: "<token>")
+client = Berrycrawl::Client.new(api_key: ENV.fetch("BERRYCRAWL_API_KEY"))
+page = client.scrape(url: "https://example.com/pricing")
+puts page.data["markdown"]
+```
 
-client.brand.retrieve(url: "https://stripe.com")
+### Crawl, search, and map
+
+```ruby
+job = client.crawl(url: "https://example.com/docs", limit: 50)
+results = client.search(query: "best headless browser libraries", limit: 10)
+site_map = client.map(url: "https://example.com", search: "documentation")
+```
+
+### Retrieve a brand profile
+
+```ruby
+brand = client.brand.retrieve(url: "https://stripe.com")
+puts brand.data
 ```
 
 ## Environments
