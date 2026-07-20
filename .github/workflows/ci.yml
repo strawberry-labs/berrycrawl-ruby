@@ -1,23 +1,14 @@
-name: CI and publish
-on:
-  push:
-  pull_request:
-  release:
-    types: [published]
+name: CI
+on: [push, pull_request]
 permissions:
   contents: read
-  id-token: write
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
           bundler-cache: true
       - run: bundle exec rake test
-      - if: github.event_name == 'release'
-        uses: rubygems/configure-rubygems-credentials@v1.0.0
-      - if: github.event_name == 'release'
-        run: gem build Berrycrawl.gemspec && gem push berrycrawl-*.gem
